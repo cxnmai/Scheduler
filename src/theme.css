@@ -1,0 +1,38 @@
+:root {
+  --primary-color: #ff0000; /* Red */
+  --secondary-color: #808080; /* Gray */
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}

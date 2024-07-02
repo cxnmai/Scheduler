@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
+import HomePage from './components/HomePage';
+import AppPage from './components/AppPage';
+import AboutPage from './components/AboutPage';
+import './theme.css';
 
-function App() {
+const App = () => {
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  const handleLoginSuccess = (user) => {
+    setLoggedInUser(user);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav style={{ backgroundColor: 'var(--secondary-color)', padding: '10px' }}>
+          <Link to="/" style={{ margin: '0 10px', color: 'white' }}>Home</Link>
+          <Link to="/app" style={{ margin: '0 10px', color: 'white' }}>App</Link>
+          <Link to="/about" style={{ margin: '0 10px', color: 'white' }}>About</Link>
+        </nav>
+        <Switch>
+          <Route exact path="/" render={() => <HomePage onLoginSuccess={handleLoginSuccess} />} />
+          <Route path="/app" render={() => loggedInUser ? <AppPage user={loggedInUser} /> : <Redirect to="/" />} />
+          <Route path="/about" component={AboutPage} />
+        </Switch>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
